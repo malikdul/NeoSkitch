@@ -15,6 +15,7 @@
   </compiler>
   <applications>
     <application path="NeoSkitchSample.mxml"/>
+    <application path="Arrows.mxml"/>
   </applications>
   <modules/>
   <buildCSSFiles/>

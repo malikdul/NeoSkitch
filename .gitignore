@@ -1,3 +1,12 @@
+#remove these test projects ( lines )
+robotlegs-framework-v1.5.2/
+myImageEditor/
+Robotlegs-Hello/
+robotlegs-HelloFlex/
+
+#Eclipse / Flash Builder Workspace Folder
+.metadata/
+
 # Build and Release Folders
 bin/
 bin-debug/

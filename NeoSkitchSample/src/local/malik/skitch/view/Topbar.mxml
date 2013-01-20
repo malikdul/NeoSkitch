@@ -6,8 +6,14 @@
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
 	
+	<s:layout>
+		<s:HorizontalLayout />
+	</s:layout>
 	
-	<s:Label Text="Blank" />
+	
+	
+	
+	<s:Label text="Blank" />
 	<s:Spacer width="100%" />
 	<s:ToggleButton label="redo" />
 	<s:ToggleButton label="delete" />
