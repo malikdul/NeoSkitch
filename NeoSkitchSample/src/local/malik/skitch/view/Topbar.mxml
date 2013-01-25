@@ -18,16 +18,15 @@ For more information see COPYING.txt file in the root folder
 	</fx:Declarations>
 	
 	<s:layout>
-		<s:HorizontalLayout />
+		<s:HorizontalLayout verticalAlign="middle" paddingLeft="20" />
 	</s:layout>
 	
 	
 	
-	
-	<s:Label text="Blank" />
+	<s:Label color="#FFFFFF" fontSize="16" fontWeight="bold" text="Blank"/>
 	<s:Spacer width="100%" />
-	<s:ToggleButton label="redo" />
-	<s:ToggleButton label="delete" />
+	<s:Button label="redo" skinClass="local.malik.skitch.view.skins.UndoTB" />
+	<s:Button label="delete" skinClass="local.malik.skitch.view.skins.DeleteTB" />
 	
 	
 </s:SkinnableContainer>

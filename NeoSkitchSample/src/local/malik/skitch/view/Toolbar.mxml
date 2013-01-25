@@ -12,19 +12,98 @@ For more information see COPYING.txt file in the root folder
 
 <s:SkinnableContainer xmlns:fx="http://ns.adobe.com/mxml/2009" 
 					  xmlns:s="library://ns.adobe.com/flex/spark" 
-					  xmlns:mx="library://ns.adobe.com/flex/mx">
+					  xmlns:mx="library://ns.adobe.com/flex/mx" 
+					  xmlns:components="local.malik.skitch.view.components.*"
+					  
+					  >
+	
+	<fx:Script>
+		<![CDATA[
+			import local.malik.skitch.view.components.ColorPopup;
+			import local.malik.skitch.view.components.PopupGroup;
+			import local.malik.skitch.view.components.ShapesPopup;
+			
+			private var curruntpop:PopupGroup;
+			
+			private function createPopup(Type:Class, event:MouseEvent):void
+			{
+				var toggleView:Boolean = null != curruntpop && curruntpop is Type;
+				
+				removeAllPopups();
+				
+				if(toggleView )
+				{
+					return;
+				}
+				
+				curruntpop = new Type();
+				curruntpop.ShowPopup( this );
+				
+				var pt:Point = event.currentTarget.parent.localToGlobal(new Point(event.currentTarget.x, event.currentTarget.y));
+				curruntpop.move( pt.x + 40 , pt.y - ( event.currentTarget.height / 2  ) + 10); 
+			}
+			
+			public function removeAllPopups():void
+			{
+				if( curruntpop && curruntpop.isPopUp )
+				{
+					curruntpop.removePopup();
+					curruntpop = null;
+				}
+				
+			}
+			
+			protected function id_colorbtn_clickHandler(event:MouseEvent):void
+			{
+				
+				createPopup( ColorPopup, event );
+				
+				event.preventDefault();
+				event.stopImmediatePropagation();
+				
+			}
+			
+			
+			protected function id_shapebtn_clickHandler(event:MouseEvent):void
+			{
+				createPopup( ShapesPopup, event );
+				
+				event.preventDefault();
+				event.stopImmediatePropagation();
+			}
+			
+		]]>
+	</fx:Script>
+	
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
 	
 	<s:layout>
-		<s:VerticalLayout />
+		<s:VerticalLayout paddingTop="50" />
 	</s:layout>
 	
 	
-	<s:ToggleButton label="arrow" />
-	<s:ToggleButton label="text" />
-	<s:ToggleButton label="resize" />
+	<s:ToggleButton label="arrow" skinClass="local.malik.skitch.view.skins.ArrowTB" />
+	<s:ToggleButton label="text" skinClass="local.malik.skitch.view.skins.TextTB" />
+	
+	<s:Group>
+		
+		<s:ToggleButton label="Pen" skinClass="local.malik.skitch.view.skins.PenTB" />
+		<s:Image source="@Embed('/assets/images/option.png')" x="{id_colorbtn.width - 3}" y="{id_colorbtn.height - 3}" />
+		
+	</s:Group>
+	<s:Group>
+		
+		<s:ToggleButton id="id_shapebtn" label="Shapes" click="id_shapebtn_clickHandler(event)" skinClass="local.malik.skitch.view.skins.RectangleTB" />
+		<s:Image source="@Embed('/assets/images/option.png')" x="{id_shapebtn.width - 5}" y="{id_shapebtn.height - 5}" />
+		
+	</s:Group>
+	
+	<components:ColorButton id="id_colorbtn" label="Color" color="#ff0000" skinClass="local.malik.skitch.view.skins.ColorPallete2TB" click="id_colorbtn_clickHandler(event)" />
+	
+	<s:ToggleButton label="Pixalate" skinClass="local.malik.skitch.view.skins.PixalateTB" />
+	<s:ToggleButton label="resize" skinClass="local.malik.skitch.view.skins.ResizeTB" />
 	
 	
 </s:SkinnableContainer>

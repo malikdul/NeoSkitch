@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Copyright (c) 2013 malikdul ( malikdul@gmail.com )
+Licensed under the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+For more information see COPYING.txt file in the root folder
+
+-->
+
+<s:Skin xmlns:s="library://ns.adobe.com/flex/spark"
+		xmlns:fx="http://ns.adobe.com/mxml/2009"
+		width="154" height="18">
+	<fx:Metadata>[HostComponent("spark.components.HSlider")]</fx:Metadata>
+	<s:states>
+		<s:State name="normal"/>
+		<s:State name="disabled"/>
+	</s:states>
+	<s:Button id="track" x="0" y="4" skinClass="local.malik.skitch.view.skins.SliderTrackSkin2"/>
+	<s:Button id="thumb" x="122" y="0" skinClass="local.malik.skitch.view.skins.SliderThumbSkin2"
+			  buttonMode.normal="true"/>
+</s:Skin>

@@ -52,9 +52,10 @@ package local.malik.skitch.view.drawing.controller
 		private var minHeightWidth	:int ;
 		
 		
-		public function ProxyDrawingController(view:IShapeContainer)
+		public function ProxyDrawingController(view:IShapeContainer, minHeightWidth:int = 20)
 		{
-			cView 		= view;
+			cView 			= view;
+			minHeightWidth	= minHeightWidth;
 			
 			proxyObject = new ShapeProxy();
 		}
@@ -97,24 +98,32 @@ package local.malik.skitch.view.drawing.controller
 		
 		public function mouseUpHandler(event:MouseEvent):void
 		{
-			event.stopImmediatePropagation();
-			
-			currentObject.width 	= proxyObject.width;
-			currentObject.height 	= proxyObject.height;
-			
-			cView.removeElement(proxyObject);
-			
-			if(currentObject.width < minHeightWidth && currentObject.height < minHeightWidth)
+			try
 			{
-				currentObject.width 	= minHeightWidth;
-				currentObject.height 	= minHeightWidth;
+				event.stopImmediatePropagation();
+				
+				currentObject.width 	= proxyObject.width;
+				currentObject.height 	= proxyObject.height;
+				
+				cView.removeElement(proxyObject);
+				
+				if(currentObject.width < minHeightWidth && currentObject.height < minHeightWidth)
+				{
+					currentObject.width 	= minHeightWidth;
+					currentObject.height 	= minHeightWidth;
+				}
+				
+				var sp:ShapeProxy 			= currentObject as ShapeProxy;
+				currentObject 				= null;
+				
+				var e:ElementExistenceEvent = new ElementExistenceEvent( "proxyDrawingEnd", true, false, sp );
+				cView.dispatchEvent( e );
+				
+			} 
+			catch(error:Error) 
+			{
+				//known if previously was on popup, just ignore it ... TODO: needs more cases here and need more debuging :)
 			}
-			
-			var sp:ShapeProxy 			= currentObject as ShapeProxy;
-			currentObject 				= null;
-			
-			var e:ElementExistenceEvent = new ElementExistenceEvent( "proxyDrawingEnd", true, false, sp );
-			cView.dispatchEvent( e );
 		}
 	}
 }

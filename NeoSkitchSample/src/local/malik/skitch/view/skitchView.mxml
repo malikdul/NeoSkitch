@@ -25,8 +25,8 @@ For more information see COPYING.txt file in the root folder
 	
 	<view:Toolbar height="100%" />
 	
-	<s:VGroup width="100%" height="100%">
-		<view:Topbar width="100%" />
+	<s:VGroup width="100%" height="100%" gap="0" >
+		<view:Topbar width="100%" skinClass="local.malik.skitch.view.skins.TopbarBG" />
 		<view:DrawingAreaView width="100%" height="100%" />
 	</s:VGroup>
 	

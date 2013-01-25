@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Copyright (c) 2013 malikdul ( malikdul@gmail.com )
+Licensed under the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+For more information see COPYING.txt file in the root folder
+
+-->
+
+<s:Skin xmlns:s="library://ns.adobe.com/flex/spark"
+		xmlns:fx="http://ns.adobe.com/mxml/2009"
+		width="41" height="40">
+	<fx:Metadata>[HostComponent("spark.components.ToggleButton")]</fx:Metadata>
+	<s:states>
+		<s:State name="up"/>
+		<s:State name="over"/>
+		<s:State name="down"/>
+		<s:State name="disabled"/>
+		<s:State name="upAndSelected"/>
+		<s:State name="overAndSelected"/>
+		<s:State name="downAndSelected"/>
+		<s:State name="disabledAndSelected"/>
+	</s:states>
+	<s:Rect includeIn="disabledAndSelected,downAndSelected,overAndSelected,upAndSelected" x="0.008"
+			y="0.006" width="40" height="40" radiusX="4"
+			x.upAndSelected="0.563" y.upAndSelected="-0.043">
+		<s:fill>
+			<s:LinearGradient rotation="90">
+				<s:GradientEntry alpha="1.0" color="#ECECEC" ratio="0"/>
+				<s:GradientEntry alpha="1.0" color="#E1E1E1" ratio="1"/>
+			</s:LinearGradient>
+		</s:fill>
+		<s:filters>
+			<s:DropShadowFilter alpha="1" angle="45" blurX="1" blurY="1" color="#969696" distance="1"
+								hideObject="false" inner="true" knockout="false" quality="3"
+								strength="1"/>
+		</s:filters>
+	</s:Rect>
+	<s:Rect x="0" y="0" width="40" height="40" radiusX="4"
+			visible.disabled="false"
+			visible.disabledAndSelected="false"
+			visible.downAndSelected="false"
+			visible.overAndSelected="false"
+			visible.up="false"
+			visible.upAndSelected="false">
+		<s:fill>
+			<s:LinearGradient rotation="90">
+				<s:GradientEntry alpha="1.0" color="#ECECEC" ratio="0"/>
+				<s:GradientEntry alpha="1.0" color="#E1E1E1" ratio="1"/>
+			</s:LinearGradient>
+		</s:fill>
+		<s:filters>
+			<s:DropShadowFilter includeIn="disabled,disabledAndSelected,down,downAndSelected,overAndSelected,up,upAndSelected"
+								alpha="1" angle="45" blurX="1" blurY="1" color="#969696"
+								distance="1" hideObject="false" inner="true" knockout="false"
+								quality="3" strength="1"/>
+			<s:DropShadowFilter includeIn="over" alpha="0.5" angle="99.46232220802564" blurX="2" blurY="2"
+								color="#000000" distance="1" hideObject="false" inner="false"
+								knockout="false" quality="3" strength="1"/>
+		</s:filters>
+	</s:Rect>
+	<s:BitmapImage x="13.563" y="11.957" smooth="true" source="@Embed('/assets/images/delete.png')"/>
+</s:Skin>
