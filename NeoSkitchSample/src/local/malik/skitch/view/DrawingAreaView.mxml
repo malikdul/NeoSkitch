@@ -56,13 +56,13 @@ For more information see COPYING.txt file in the root folder
 				this.addEventListener(MouseEvent.MOUSE_DOWN, controller.mouseDownHandler);
 				this.addEventListener(MouseEvent.MOUSE_MOVE, controller.mouseMoveHandler);
 				this.addEventListener(MouseEvent.MOUSE_UP, controller.mouseUpHandler);
-				this.addEventListener("proxyDrawingEnd", onProxyDrawingEnd);
+				//this.addEventListener("proxyDrawingEnd", onProxyDrawingEnd);
 			}
 			
-			protected function onProxyDrawingEnd(event:ElementExistenceEvent):void
+			/* protected function onProxyDrawingEnd(event:ElementExistenceEvent):void
 			{
 				trace("onAddElement:", event.currentTarget.name)
-			}
+			} */
 			
 		]]>
 	</fx:Script>

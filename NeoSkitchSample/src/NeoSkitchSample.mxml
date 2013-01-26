@@ -11,9 +11,12 @@ For more information see COPYING.txt file in the root folder
 -->
 <s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
 			   xmlns:s="library://ns.adobe.com/flex/spark" 
-			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600" xmlns:view="local.malik.skitch.view.*">
+			   xmlns:mx="library://ns.adobe.com/flex/mx" 
+			   minWidth="955" minHeight="600" 
+			   xmlns:view="local.malik.skitch.view.*" 
+			   xmlns:skitch="local.malik.skitch.*">
 	<fx:Declarations>
-		<!-- Place non-visual elements (e.g., services, value objects) here -->
+		<skitch:SkitchContext contextView="{this}" />
 	</fx:Declarations>
 	
 	<s:Scroller width="100%" height="100%" >

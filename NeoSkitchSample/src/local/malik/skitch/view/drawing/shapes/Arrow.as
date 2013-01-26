@@ -9,7 +9,7 @@ For more information see COPYING.txt file in the root folder
 
 
 **/
-package local.malik.skitch.view.drawing
+package local.malik.skitch.view.drawing.shapes
 {
 	import flash.display.CapsStyle;
 	import flash.display.Graphics;
@@ -22,6 +22,7 @@ package local.malik.skitch.view.drawing
 	import flash.geom.Point;
 	
 	import mx.core.UIComponent;
+	import local.malik.skitch.view.drawing.Shape;
 
 	/**
 	 * 

@@ -16,7 +16,7 @@ For more information see COPYING.txt file in the root folder
 			   >
 	<fx:Script>
 		<![CDATA[
-			import local.malik.skitch.view.drawing.Arrow;
+			import local.malik.skitch.view.drawing.shapes.Arrow;
 			
 			import mx.core.UIComponent;
 			import mx.events.FlexEvent;

@@ -92,7 +92,7 @@ package local.malik.skitch.view.drawing.controller
 			var h:int 				= event.stageY - global.y ;
 			
 			proxyObject.width 		= w;
-			proxyObject.height 		= h
+			proxyObject.height 		= h;
 			
 		}
 		
