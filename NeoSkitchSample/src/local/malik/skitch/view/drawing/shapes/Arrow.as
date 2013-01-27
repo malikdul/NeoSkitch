@@ -42,24 +42,15 @@ package local.malik.skitch.view.drawing.shapes
 			
 		}
 		
-		override protected function addedToStageHandler(event:Event):void
-		{
-			super.addedToStageHandler( event );
-			
-			Draw();
-		}
-		
 		override protected function Draw():void
 		{
 			borderColor = Math.random() * 0xffffff;
 			
-			// give alpha for interaction
 			var g:Graphics = this.graphics;
 			g.beginFill(0x0, 0.0);
 			g.drawRect(0, 0, stage.stageWidth, stage.stageHeight);
 			g.endFill();
 			
-			// listen for mouse down
 			this.addEventListener(MouseEvent.MOUSE_DOWN, mouseDownHandler);
 		}
 		

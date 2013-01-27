@@ -15,7 +15,12 @@ package local.malik.skitch.view.drawing
 	import flash.display.StageScaleMode;
 	import flash.events.Event;
 	
+	import local.malik.skitch.util.xml.XmlConstants;
+	import local.malik.skitch.util.xml.XmlUtils;
+	
 	import mx.core.UIComponent;
+	import mx.events.PropertyChangeEvent;
+	import mx.events.ResizeEvent;
 	
 	/**
 	 * 
@@ -34,8 +39,12 @@ package local.malik.skitch.view.drawing
 		private var _shapeY:Number;
 		
 		private var _borderWeight:Number	= 1;
-		private var _borderColor:Number		= 0x000000;
+		private var _borderColor:uint		= 0x000000;
 		private var _borderAlpha:Number		= 1;
+
+		private var _fillColor:uint			= 0xffffff;
+		private var _fillAlpha:Number		= 1;
+		
 		
 		public function Shape()
 		{
@@ -50,6 +59,40 @@ package local.malik.skitch.view.drawing
 			borderAlpha			= 1;
 			
 			addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
+			addEventListener(ResizeEvent.RESIZE, ResizeHandler);
+			addEventListener(PropertyChangeEvent.PROPERTY_CHANGE, PropertyChangeHandler);
+		}
+		
+		/**
+		 * 
+		 * Color of the fill. 
+		 * 
+		 */	
+		public function get fillColor():uint
+		{
+			return _fillColor;
+		}
+
+		public function set fillColor(value:uint):void
+		{
+			_fillColor = value;
+		}
+
+		/**
+		 * 
+		 * Indicates the alpha transparency value of the fill in drawing context. 
+		 * Valid values are 0 (fully transparent) to 1 (fully opaque). 
+		 * The default value is 1.  
+		 * 
+		 */	
+		public function get fillAlpha():Number
+		{
+			return _fillAlpha;
+		}
+
+		public function set fillAlpha(value:Number):void
+		{
+			_fillAlpha = value;
 		}
 		
 		/**
@@ -72,12 +115,12 @@ package local.malik.skitch.view.drawing
 		 * Color of the border. 
 		 * 
 		 */		
-		public function get borderColor():Number
+		public function get borderColor():uint
 		{
 			return _borderColor;
 		}
 
-		public function set borderColor(value:Number):void
+		public function set borderColor(value:uint):void
 		{
 			_borderColor = value;
 		}
@@ -169,6 +212,56 @@ package local.malik.skitch.view.drawing
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			stage.align 	= StageAlign.TOP_LEFT;
 			
+			Draw();
+		}
+		
+		protected function ResizeHandler(event:ResizeEvent):void
+		{
+			RefreshDisplay();
+		}
+		
+		public function PropertyChangeHandler(evt:PropertyChangeEvent):void
+		{
+			RefreshDisplay();
+		}
+		
+		
+		public function FromXML(x:XML):void
+		{
+			this._borderAlpha	= x.@[XmlConstants.BORDER_ALPHA];
+			this._borderColor	= x.@[XmlConstants.BORDER_COLOR];
+			this._borderWeight	= x.@[XmlConstants.BORDER_WEIGHT];
+			this._fillAlpha		= x.@[XmlConstants.FILL_ALPHA];
+			this._fillColor		= x.@[XmlConstants.FILL_COLOR];
+			this._shapeHeight	= x.@[XmlConstants.SHAPE_HEIGHT];
+			this._shapeWidth	= x.@[XmlConstants.SHAPE_WIDTH];
+			this._shapeX		= x.@[XmlConstants.SHAPE_X];
+			this._shapeY		= x.@[XmlConstants.SHAPE_Y];
+			this.height			= x.@[XmlConstants.HEIGHT];
+			this.width			= x.@[XmlConstants.WIDTH];
+			this.x				= x.@[XmlConstants.X];
+			this.y				= x.@[XmlConstants.Y];
+		}
+		
+		public function ToXML(tagName:String = "shape"):XML
+		{
+			var x:XML = XmlUtils.getNodeByTagName(tagName);
+			
+			x.@[XmlConstants.BORDER_ALPHA] 	= this._borderAlpha;
+			x.@[XmlConstants.BORDER_COLOR] 	= this._borderColor;
+			x.@[XmlConstants.BORDER_WEIGHT] = this._borderWeight;
+			x.@[XmlConstants.FILL_ALPHA] 	= this._fillAlpha;
+			x.@[XmlConstants.FILL_COLOR] 	= this._fillColor;
+			x.@[XmlConstants.SHAPE_HEIGHT] 	= this._shapeHeight;
+			x.@[XmlConstants.SHAPE_WIDTH] 	= this._shapeWidth;
+			x.@[XmlConstants.SHAPE_X] 		= this._shapeX;
+			x.@[XmlConstants.SHAPE_Y] 		= this._shapeY;
+			x.@[XmlConstants.HEIGHT] 		= this.height;
+			x.@[XmlConstants.WIDTH] 		= this.width;
+			x.@[XmlConstants.X] 			= this.x;
+			x.@[XmlConstants.Y] 			= this.y;
+			
+			return x;
 		}
 		
 		/**
@@ -182,5 +275,11 @@ package local.malik.skitch.view.drawing
 			
 			this.graphics.clear();
 		}
+		
+		private function RefreshDisplay():void
+		{     	
+			Draw();
+		}
+		
 	}
 }

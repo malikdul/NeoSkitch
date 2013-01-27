@@ -1,8 +1,5 @@
-#remove these test projects ( lines )
+#remove these lib project
 robotlegs-framework-v1.5.2/
-myImageEditor/
-Robotlegs-Hello/
-robotlegs-HelloFlex/
 
 #Eclipse / Flash Builder Workspace Folder
 .metadata/

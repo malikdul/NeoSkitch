@@ -24,8 +24,9 @@ package local.malik.skitch.view.event
 		
 		public static var DRAW_SHAPE:String = "DrawShape";
 		
-		public function DrawShapeEvent(type:String="", bubbles:Boolean=false, cancelable:Boolean=false)
+		public function DrawShapeEvent(shapeName:String, type:String="", bubbles:Boolean=false, cancelable:Boolean=false)
 		{
+			this.shapeName = shapeName;
 			if(type == "")
 			{
 				type = DRAW_SHAPE;

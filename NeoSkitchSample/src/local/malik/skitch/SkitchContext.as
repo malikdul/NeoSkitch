@@ -13,13 +13,20 @@ package local.malik.skitch
 {
 	import flash.display.DisplayObjectContainer;
 	
+	import local.malik.skitch.controller.LoadDocumentFromSO;
+	import local.malik.skitch.controller.SaveDocumentToSO;
+	import local.malik.skitch.model.DocumentModel;
+	import local.malik.skitch.model.event.DocumentModelEvent;
 	import local.malik.skitch.view.DrawingAreaView;
 	import local.malik.skitch.view.Toolbar;
 	import local.malik.skitch.view.components.ColorPopup;
+	import local.malik.skitch.view.components.ShapesPopup;
 	import local.malik.skitch.view.mediators.ColorPopupMediator;
 	import local.malik.skitch.view.mediators.DrawingAreaMediator;
+	import local.malik.skitch.view.mediators.ShapesPopupMediator;
 	import local.malik.skitch.view.mediators.ToolbarMediator;
 	
+	import org.robotlegs.base.ContextEvent;
 	import org.robotlegs.mvcs.Context;
 
 	public class SkitchContext extends Context
@@ -31,15 +38,22 @@ package local.malik.skitch
 		
 		override public function startup():void
 		{
+			// Model
+			injector.mapSingleton(DocumentModel);
 			
-			
-			
-			mediatorMap.mapView(DrawingAreaView, DrawingAreaMediator);
-			mediatorMap.mapView(Toolbar, ToolbarMediator);
+			// Controller
+			commandMap.mapEvent(ContextEvent.STARTUP_COMPLETE, LoadDocumentFromSO ); 
+			commandMap.mapEvent(DocumentModelEvent.SHAPE_ADDED, SaveDocumentToSO);
+			commandMap.mapEvent(DocumentModelEvent.SHAPE_DELETED, SaveDocumentToSO);
+
+			//view
 			mediatorMap.mapView(ColorPopup, ColorPopupMediator, null, false );
+			mediatorMap.mapView(ShapesPopup, ShapesPopupMediator, null, false );
+			mediatorMap.mapView(Toolbar, ToolbarMediator);
+			mediatorMap.mapView(DrawingAreaView, DrawingAreaMediator);
 			
 			super.startup();
 		}
-			
+		
 	}
 }

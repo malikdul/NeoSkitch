@@ -13,19 +13,19 @@ package local.malik.skitch.view.mediators
 {
 	import flash.events.MouseEvent;
 	
-	import local.malik.skitch.model.vo.ColorVO;
-	import local.malik.skitch.view.components.ColorButton;
-	import local.malik.skitch.view.components.ColorPopup;
-	import local.malik.skitch.view.event.AppViewEvent;
+	import local.malik.skitch.view.components.ShapesPopup;
+	import local.malik.skitch.view.event.DrawShapeEvent;
 	
 	import org.robotlegs.mvcs.Mediator;
 	
-	public class ColorPopupMediator extends Mediator
+	import spark.components.ToggleButton;
+	
+	public class ShapesPopupMediator extends Mediator
 	{
 		[Inject]
-		public var view:ColorPopup;
+		public var view:ShapesPopup;
 		
-		public function ColorPopupMediator()
+		public function ShapesPopupMediator()
 		{
 			super();
 		}
@@ -37,10 +37,9 @@ package local.malik.skitch.view.mediators
 		
 		protected function onViewClick(event:MouseEvent):void
 		{
-			if( event.target is ColorButton )
+			if( event.target is ToggleButton )
 			{
-				var color:ColorVO = new ColorVO( event.target.color, view.id_opacity.value / 100 );
-				dispatch( new AppViewEvent(AppViewEvent.COLOR_CHANGE, color ) );
+				dispatch( new DrawShapeEvent(event.target.label) );
 				view.removePopup();
 			}
 		}

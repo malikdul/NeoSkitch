@@ -24,45 +24,19 @@ For more information see COPYING.txt file in the root folder
 			import mx.core.UIComponentCachePolicy;
 			import mx.events.FlexEvent;
 			
-			import spark.events.ElementExistenceEvent;
-			
 			private var controller:ProxyDrawingController;	
-			private var showGrid:Boolean;	
-			
-			private var startX:int;
-			private var startY:int;
-			
-			private var _IsDrawingMode:Boolean;
-			
-			private var showPage:Boolean;
-			
 			
 			protected function init(event:FlexEvent):void
 			{
 				cachePolicy 	= UIComponentCachePolicy.ON;
 				cacheAsBitmap 	= true;
 				
-				
 				controller = new ProxyDrawingController( this );
 				
-				
-				
-				
-				/* this.width = 595;
-				this.height = 842; */
-				showGrid = true;
-				
-				//this.addEventListener(FlexEvent.CREATION_COMPLETE,Init);	
 				this.addEventListener(MouseEvent.MOUSE_DOWN, controller.mouseDownHandler);
 				this.addEventListener(MouseEvent.MOUSE_MOVE, controller.mouseMoveHandler);
 				this.addEventListener(MouseEvent.MOUSE_UP, controller.mouseUpHandler);
-				//this.addEventListener("proxyDrawingEnd", onProxyDrawingEnd);
 			}
-			
-			/* protected function onProxyDrawingEnd(event:ElementExistenceEvent):void
-			{
-				trace("onAddElement:", event.currentTarget.name)
-			} */
 			
 		]]>
 	</fx:Script>

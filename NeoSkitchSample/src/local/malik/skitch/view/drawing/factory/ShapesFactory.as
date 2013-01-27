@@ -13,13 +13,11 @@ package local.malik.skitch.view.drawing.factory
 {
 	import local.malik.skitch.util.Constants;
 	import local.malik.skitch.view.drawing.Shape;
-	import local.malik.skitch.view.drawing.events.DrawShapeEvent;
 	import local.malik.skitch.view.drawing.shapes.Elipse;
 	import local.malik.skitch.view.drawing.shapes.Line;
 	import local.malik.skitch.view.drawing.shapes.Rectangle;
 	import local.malik.skitch.view.drawing.text.Text;
-	
-	import mx.controls.Alert;
+	import local.malik.skitch.view.event.DrawShapeEvent;
 
 	public class ShapesFactory
 	{
@@ -43,12 +41,41 @@ package local.malik.skitch.view.drawing.factory
 					shape = new Text();
 					break;
 				default:
-					Alert.show("Requeted feature [ADD " + event.shapeName.toUpperCase() + "] is in progress ...", "Skitch");
+					trace("Requeted feature [ADD " + event.shapeName.toUpperCase() + "] is in progress ...", "Skitch");
 					return null;				
 			}
 			
 			shape.x = event.shapeX;
 			shape.y = event.shapeY;
+			return shape;
+		}
+		
+		public static function getShapeFromXML(x:XML):Shape
+		{
+			var shape:Shape = null;
+			var name:String = x.localName().toLowerCase()
+			switch(name)
+			{
+				case Constants.PAGE:
+					return null; //its a special object not a normal shape, will create later if required.
+				case Constants.ELIPSE:
+					shape = new Elipse();
+					break;
+				case Constants.LINE:
+					shape = new Line();
+					break;
+				case Constants.RECTANGLE:
+					shape = new Rectangle();
+					break;
+				case Constants.TEXT:
+					shape = new Text();
+					break;
+				default:
+					trace("Requeted feature [ADD " + x.localName().toUpperCase() + "] is in progress ...", "Skitch");
+					return null;				
+			}
+			
+			shape.FromXML( x );
 			return shape;
 		}
 	}

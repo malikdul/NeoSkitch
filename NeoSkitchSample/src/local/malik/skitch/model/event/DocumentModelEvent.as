@@ -9,7 +9,7 @@ For more information see COPYING.txt file in the root folder
 
 
 **/
-package local.malik.demo.hello.model.event
+package local.malik.skitch.model.event
 {
 	import flash.events.Event;
 	
@@ -20,18 +20,19 @@ package local.malik.demo.hello.model.event
 		public static const SHAPE_ADDED:String 					= 'shapeAdded';
 		public static const SHAPE_DELETED:String 				= 'shapeDeleted';
 		public static const SHAPE_COLLECTION_CLEARED:String 	= 'shapesCollectionCleared';
+		public static const RE_LOAD_DOCUMENT:String 			= 'addShapesInCollection';
 		
-		private var _shape:Shape;
+		private var _payload:Object;
 		
-		public function DocumentModelEvent(type:String, shape:Shape = null)
+		public function DocumentModelEvent(type:String, payload:Object = null)
 		{
 			super(type);
-			_shape = shape;
+			_payload = payload;
 		}
 		
-		public function get shape():Shape
+		public function get payload():Object
 		{
-			return _shape;
+			return _payload;
 		}
 	}
 }

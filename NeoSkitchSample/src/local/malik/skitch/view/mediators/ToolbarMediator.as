@@ -23,6 +23,7 @@ package local.malik.skitch.view.mediators
 	import local.malik.skitch.view.components.PopupGroup;
 	import local.malik.skitch.view.components.ShapesPopup;
 	import local.malik.skitch.view.event.AppViewEvent;
+	import local.malik.skitch.view.event.DrawShapeEvent;
 	
 	import mx.events.CloseEvent;
 	
@@ -41,9 +42,15 @@ package local.malik.skitch.view.mediators
 		override public function onRegister():void
 		{
 			// Context Listeners
+			eventMap.mapListener(eventDispatcher, DrawShapeEvent.DRAW_SHAPE, whenShapeChanged);
 			eventMap.mapListener(eventDispatcher, AppViewEvent.COLOR_CHANGE, whenColorChanged);
 			// View Listeners
 			eventMap.mapListener(view, MouseEvent.CLICK, onViewClick);
+		}
+		
+		protected function whenShapeChanged(event:DrawShapeEvent):void
+		{
+			view.changeShape( event.shapeName );
 		}
 		
 		protected function whenColorChanged(event:AppViewEvent):void
@@ -56,13 +63,9 @@ package local.malik.skitch.view.mediators
 			switch(event.target.label)
 			{
 				case Constants.ARROW:
-				{
-					
-					break;
-				}
 				case Constants.TEXT:
 				{
-					
+					dispatch( new DrawShapeEvent(event.target.label) );
 					break;
 				}
 				case Constants.PEN:
@@ -91,10 +94,6 @@ package local.malik.skitch.view.mediators
 					break;
 				}
 					
-				default:
-				{
-					break;
-				}
 			}
 			
 			event.preventDefault();
