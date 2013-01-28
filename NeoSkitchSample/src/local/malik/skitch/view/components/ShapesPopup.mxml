@@ -16,6 +16,11 @@ For more information see COPYING.txt file in the root folder
 					   xmlns:components="local.malik.skitch.view.components.*"
 					   
 					   >
+	<fx:Script>
+		<![CDATA[
+			import local.malik.skitch.util.Constants;
+		]]>
+	</fx:Script>
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
@@ -29,9 +34,9 @@ For more information see COPYING.txt file in the root folder
 		
 		
 		<s:HGroup >
-			<s:ToggleButton id="id_rectanglebtn" label="Shapes" skinClass="local.malik.skitch.view.skins.RectangleTB" />
-			<s:ToggleButton id="id_circlebtn" label="Shapes" skinClass="local.malik.skitch.view.skins.CircleTB" />
-			<s:ToggleButton id="id_linebtn" label="Shapes" skinClass="local.malik.skitch.view.skins.LineTB" />
+			<s:ToggleButton id="id_rectanglebtn" label="{Constants.RECTANGLE}" skinClass="local.malik.skitch.view.skins.RectangleTB" />
+			<s:ToggleButton id="id_circlebtn" label="{Constants.ELIPSE}" skinClass="local.malik.skitch.view.skins.CircleTB" />
+			<s:ToggleButton id="id_linebtn" label="{Constants.LINE}" skinClass="local.malik.skitch.view.skins.LineTB" />
 		</s:HGroup>
 		
 	</s:SkinnableContainer>

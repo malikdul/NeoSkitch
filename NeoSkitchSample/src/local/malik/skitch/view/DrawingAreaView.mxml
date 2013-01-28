@@ -16,53 +16,75 @@ For more information see COPYING.txt file in the root folder
 					  implements="local.malik.skitch.view.drawing.interfaces.IShapeContainer"
 					  name="DrawingArea"
 					  creationComplete="init(event)"
+					  
+					  backgroundAlpha="0.001"
+					  backgroundColor="#0"
 					  >
 	<fx:Script>
 		<![CDATA[
+			import local.malik.skitch.view.drawing.controller.DrawingController;
 			import local.malik.skitch.view.drawing.controller.ProxyDrawingController;
+			import local.malik.skitch.view.drawing.interfaces.IShape;
 			
+			import mx.core.IVisualElement;
 			import mx.core.UIComponentCachePolicy;
 			import mx.events.FlexEvent;
 			
-			import spark.events.ElementExistenceEvent;
-			
-			private var controller:ProxyDrawingController;	
-			private var showGrid:Boolean;	
-			
-			private var startX:int;
-			private var startY:int;
-			
-			private var _IsDrawingMode:Boolean;
-			
-			private var showPage:Boolean;
-			
+			private var proxycontroller:ProxyDrawingController;	
+			private var controller:DrawingController;	
 			
 			protected function init(event:FlexEvent):void
 			{
 				cachePolicy 	= UIComponentCachePolicy.ON;
 				cacheAsBitmap 	= true;
 				
+				proxycontroller = new ProxyDrawingController( this );
+				controller		= new DrawingController(this);
 				
-				controller = new ProxyDrawingController( this );
-				
-				
-				
-				
-				/* this.width = 595;
-				this.height = 842; */
-				showGrid = true;
-				
-				//this.addEventListener(FlexEvent.CREATION_COMPLETE,Init);	
-				this.addEventListener(MouseEvent.MOUSE_DOWN, controller.mouseDownHandler);
-				this.addEventListener(MouseEvent.MOUSE_MOVE, controller.mouseMoveHandler);
-				this.addEventListener(MouseEvent.MOUSE_UP, controller.mouseUpHandler);
-				this.addEventListener("proxyDrawingEnd", onProxyDrawingEnd);
+				this.addEventListener(MouseEvent.MOUSE_DOWN, proxycontroller.mouseDownHandler);
+				this.addEventListener(MouseEvent.MOUSE_MOVE, proxycontroller.mouseMoveHandler);
+				this.addEventListener(MouseEvent.MOUSE_UP, proxycontroller.mouseUpHandler);
 			}
 			
-			protected function onProxyDrawingEnd(event:ElementExistenceEvent):void
+			public function deleteSelected():void
 			{
-				trace("onAddElement:", event.currentTarget.name)
+				var Selected:Array = controller.currentlySelected();
+				
+				while(Selected.length > 0)
+				{
+					removeElement(Selected.pop());
+				}
 			}
+			
+			override public function removeElement(element:IVisualElement):IVisualElement
+			{
+				var el:IShape = element as IShape;
+				if(el)
+				{
+					controller.UnRegisterShape(el as IShape);
+				}
+				
+				return super.removeElement( element );
+			}
+			
+			override public function addElement(element:IVisualElement):IVisualElement
+			{
+				var el:IShape = element as IShape;
+				if(el)
+				{
+					controller.RegisterShape(el as IShape);
+				}
+				return super.addElement( element);
+			}
+			
+			override public function removeAllElements():void
+			{
+				while(this.numElements > 0)
+				{
+					removeElement(this.getElementAt(0));
+				}
+			}
+			
 			
 		]]>
 	</fx:Script>
@@ -77,8 +99,5 @@ For more information see COPYING.txt file in the root folder
 	
 	
 	
-	<s:BorderContainer width="600" height="800" 
-					   borderAlpha="1" borderWeight="2" borderVisible="true"
-					   />
 	
 </s:SkinnableContainer>

@@ -14,7 +14,9 @@ package local.malik.skitch.view.components
 {
 	import flash.display.DisplayObject;
 	import flash.events.Event;
+	import flash.events.MouseEvent;
 	
+	import mx.core.FlexGlobals;
 	import mx.core.IFlexDisplayObject;
 	import mx.events.CloseEvent;
 	import mx.managers.IFocusManagerContainer;
@@ -31,13 +33,20 @@ package local.malik.skitch.view.components
 		public function PopupGroup()
 		{
 			super();
+			addEventListener(CloseEvent.CLOSE, onClosePopup);
+			FlexGlobals.topLevelApplication.addEventListener(MouseEvent.CLICK, onApplicationClick );
 			
-			addEventListener(CloseEvent.CLOSE, function (event:Event):void
-			{
-				if( isPopUp )
-					close();
-			});
-			
+		}
+		
+		private function onApplicationClick(event:Event):void
+		{
+			removePopup();
+		}
+		
+		private function onClosePopup(event:Event):void
+		{
+			if( isPopUp )
+				close();
 		}
 		
 		public function ShowPopup(parent:DisplayObject):void
@@ -52,6 +61,9 @@ package local.malik.skitch.view.components
 		
 		private function close():void
 		{
+			removeEventListener(CloseEvent.CLOSE, onClosePopup);
+			FlexGlobals.topLevelApplication.removeEventListener(MouseEvent.CLICK, onClosePopup );
+			
 			PopUpManager.removePopUp( this );
 		}
 		

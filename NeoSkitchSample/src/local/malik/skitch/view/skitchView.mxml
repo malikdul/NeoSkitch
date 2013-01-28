@@ -26,8 +26,23 @@ For more information see COPYING.txt file in the root folder
 	<view:Toolbar height="100%" />
 	
 	<s:VGroup width="100%" height="100%" gap="0" >
+		
 		<view:Topbar width="100%" skinClass="local.malik.skitch.view.skins.TopbarBG" />
-		<view:DrawingAreaView width="100%" height="100%" />
+		<s:Scroller width="100%" height="100%" >
+			<s:Group width="100%" height="100%" >
+				<s:BorderContainer width="600" height="800" borderAlpha="1" borderWeight="2" borderVisible="true"
+								   >
+					<s:layout>
+						<s:VerticalLayout gap="0" />
+					</s:layout>
+					
+					
+					
+					<view:DrawingAreaView width="100%" height="100%"  />
+					
+				</s:BorderContainer>
+			</s:Group>
+		</s:Scroller>
 	</s:VGroup>
 	
 	

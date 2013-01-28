@@ -12,15 +12,21 @@ For more information see COPYING.txt file in the root folder
 
 package local.malik.skitch.view.drawing.controller
 {
+	import com.roguedevelopment.objecthandles.SpriteHandle;
+	
 	import flash.events.MouseEvent;
 	import flash.geom.Point;
 	
+	import local.malik.skitch.view.DrawingAreaView;
 	import local.malik.skitch.view.drawing.ShapeProxy;
+	import local.malik.skitch.view.drawing.interfaces.IShape;
 	import local.malik.skitch.view.drawing.interfaces.IShapeContainer;
 	
 	import mx.core.UIComponent;
 	
+	import spark.components.RichEditableText;
 	import spark.events.ElementExistenceEvent;
+	import spark.skins.spark.SkinnableContainerSkin;
 	
 	
 	/**
@@ -62,7 +68,7 @@ package local.malik.skitch.view.drawing.controller
 		
 		public function mouseDownHandler(event:MouseEvent):void
 		{
-			event.stopImmediatePropagation();
+			if( ! ( event.target is SkinnableContainerSkin && event.currentTarget is DrawingAreaView ) ) return;
 			
 			var target:UIComponent 		= event.currentTarget as UIComponent;
 			
@@ -84,15 +90,15 @@ package local.malik.skitch.view.drawing.controller
 		
 		public function mouseMoveHandler(event:MouseEvent):void
 		{
-			event.stopImmediatePropagation();
+			if( ! ( event.target is SkinnableContainerSkin && event.currentTarget is DrawingAreaView ) ) return;
 			
 			var global:Point 		= cView.localToGlobal(new Point(proxyObject.x,proxyObject.y));
 			
 			var w:int 				= event.stageX - global.x ;				
 			var h:int 				= event.stageY - global.y ;
 			
-			proxyObject.width 		= w;
-			proxyObject.height 		= h
+			proxyObject.width 		= w - 1;
+			proxyObject.height 		= h - 1;
 			
 		}
 		
@@ -100,7 +106,7 @@ package local.malik.skitch.view.drawing.controller
 		{
 			try
 			{
-				event.stopImmediatePropagation();
+				if( ! ( event.target is SkinnableContainerSkin && event.currentTarget is DrawingAreaView ) ) return;
 				
 				currentObject.width 	= proxyObject.width;
 				currentObject.height 	= proxyObject.height;

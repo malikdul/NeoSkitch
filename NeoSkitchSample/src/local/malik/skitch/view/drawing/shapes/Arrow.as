@@ -9,7 +9,7 @@ For more information see COPYING.txt file in the root folder
 
 
 **/
-package local.malik.skitch.view.drawing
+package local.malik.skitch.view.drawing.shapes
 {
 	import flash.display.CapsStyle;
 	import flash.display.Graphics;
@@ -22,6 +22,7 @@ package local.malik.skitch.view.drawing
 	import flash.geom.Point;
 	
 	import mx.core.UIComponent;
+	import local.malik.skitch.view.drawing.Shape;
 
 	/**
 	 * 
@@ -41,24 +42,15 @@ package local.malik.skitch.view.drawing
 			
 		}
 		
-		override protected function addedToStageHandler(event:Event):void
-		{
-			super.addedToStageHandler( event );
-			
-			Draw();
-		}
-		
 		override protected function Draw():void
 		{
 			borderColor = Math.random() * 0xffffff;
 			
-			// give alpha for interaction
 			var g:Graphics = this.graphics;
 			g.beginFill(0x0, 0.0);
 			g.drawRect(0, 0, stage.stageWidth, stage.stageHeight);
 			g.endFill();
 			
-			// listen for mouse down
 			this.addEventListener(MouseEvent.MOUSE_DOWN, mouseDownHandler);
 		}
 		
