@@ -1,3 +1,14 @@
+/*
+
+Copyright (c) 2013 malikdul ( malikdul@gmail.com )
+Licensed under the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+For more information see COPYING.txt file in the root folder
+
+
+**/
 package local.malik.skitch.view.mediators
 {
 	import flash.events.MouseEvent;
@@ -31,6 +42,11 @@ package local.malik.skitch.view.mediators
 				case Constants.SAVE:
 				{
 					dispatch( new DocumentModelEvent( DocumentModelEvent.SAVE_DOCUMENT ) );
+					break;
+				}
+				case Constants.DELETE:
+				{
+					dispatch( new DocumentModelEvent( DocumentModelEvent.SHAPE_DELETED ) );
 					break;
 				}
 			}

@@ -12,18 +12,19 @@ For more information see COPYING.txt file in the root folder
 package local.malik.skitch.view.drawing.factory
 {
 	import local.malik.skitch.util.Constants;
-	import local.malik.skitch.view.drawing.Shape;
+	import local.malik.skitch.view.drawing.interfaces.IShape;
 	import local.malik.skitch.view.drawing.shapes.Elipse;
 	import local.malik.skitch.view.drawing.shapes.Line;
 	import local.malik.skitch.view.drawing.shapes.Rectangle;
 	import local.malik.skitch.view.drawing.text.Text;
+	import local.malik.skitch.view.drawing.text.TextFrame;
 	import local.malik.skitch.view.event.DrawShapeEvent;
 
 	public class ShapesFactory
 	{
-		public static function getShape(event:DrawShapeEvent):Shape
+		public static function getShape(event:DrawShapeEvent):IShape
 		{
-			var shape:Shape = null;
+			var shape:IShape = null;
 			switch(event.shapeName)
 			{
 				case Constants.PAGE:
@@ -38,21 +39,22 @@ package local.malik.skitch.view.drawing.factory
 					shape = new Rectangle();
 					break;
 				case Constants.TEXT:
-					shape = new Text();
+					//shape = new Text();
+					shape = new TextFrame();
 					break;
 				default:
 					trace("Requeted feature [ADD " + event.shapeName.toUpperCase() + "] is in progress ...", "Skitch");
 					return null;				
 			}
 			
-			shape.x = event.shapeX;
-			shape.y = event.shapeY;
+			/*shape.x = event.shapeX;
+			shape.y = event.shapeY;*/
 			return shape;
 		}
 		
-		public static function getShapeFromXML(x:XML):Shape
+		public static function getShapeFromXML(x:XML):IShape
 		{
-			var shape:Shape = null;
+			var shape:IShape = null;
 			var name:String = x.localName().toLowerCase()
 			switch(name)
 			{
@@ -68,7 +70,8 @@ package local.malik.skitch.view.drawing.factory
 					shape = new Rectangle();
 					break;
 				case Constants.TEXT:
-					shape = new Text();
+					//shape = new Text();
+					shape = new TextFrame();
 					break;
 				default:
 					trace("Requeted feature [ADD " + x.localName().toUpperCase() + "] is in progress ...", "Skitch");

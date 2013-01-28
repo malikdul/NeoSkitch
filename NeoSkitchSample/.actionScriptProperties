@@ -33,7 +33,6 @@
     <sourceAttachmentPath/>
   </compiler>
   <applications>
-    <application path="Arrows.mxml"/>
     <application path="NeoSkitchSample.mxml"/>
   </applications>
   <modules/>

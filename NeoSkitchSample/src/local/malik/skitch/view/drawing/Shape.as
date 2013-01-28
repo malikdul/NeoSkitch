@@ -47,6 +47,7 @@ package local.malik.skitch.view.drawing
 		private var _fillColor:uint			= 0xffffff;
 		private var _fillAlpha:Number		= 1;
 		
+		public var isLocked:Boolean = false;
 		
 		public function Shape()
 		{
@@ -60,10 +61,12 @@ package local.malik.skitch.view.drawing
 			borderColor			= 0x000000;
 			borderAlpha			= 1;
 			
-			addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
-			addEventListener(ResizeEvent.RESIZE, ResizeHandler);
-			addEventListener(PropertyChangeEvent.PROPERTY_CHANGE, PropertyChangeHandler);
-			addEventListener(MouseEvent.CLICK, mouseClickHandler);
+			this.addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
+			this.addEventListener(ResizeEvent.RESIZE, ResizeHandler);
+			this.addEventListener(PropertyChangeEvent.PROPERTY_CHANGE, PropertyChangeHandler);
+			
+			
+			//this.addEventListener(MouseEvent.CLICK, mouseClickHandler );
 		}
 		
 		/**

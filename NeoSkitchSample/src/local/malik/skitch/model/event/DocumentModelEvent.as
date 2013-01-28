@@ -13,8 +13,6 @@ package local.malik.skitch.model.event
 {
 	import flash.events.Event;
 	
-	import local.malik.skitch.view.drawing.Shape;
-	
 	public class DocumentModelEvent extends Event
 	{
 		public static const SAVE_DOCUMENT:String 				= 'saveDocument';

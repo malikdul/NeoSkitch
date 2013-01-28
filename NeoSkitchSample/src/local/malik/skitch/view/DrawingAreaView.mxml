@@ -16,9 +16,13 @@ For more information see COPYING.txt file in the root folder
 					  implements="local.malik.skitch.view.drawing.interfaces.IShapeContainer"
 					  name="DrawingArea"
 					  creationComplete="init(event)"
+					  
+					  backgroundAlpha="0.001"
+					  backgroundColor="#0"
 					  >
 	<fx:Script>
 		<![CDATA[
+			import local.malik.skitch.view.drawing.controller.DrawingController;
 			import local.malik.skitch.view.drawing.controller.ProxyDrawingController;
 			import local.malik.skitch.view.drawing.interfaces.IShape;
 			
@@ -27,6 +31,7 @@ For more information see COPYING.txt file in the root folder
 			import mx.events.FlexEvent;
 			
 			private var proxycontroller:ProxyDrawingController;	
+			private var controller:DrawingController;	
 			
 			protected function init(event:FlexEvent):void
 			{
@@ -34,10 +39,50 @@ For more information see COPYING.txt file in the root folder
 				cacheAsBitmap 	= true;
 				
 				proxycontroller = new ProxyDrawingController( this );
+				controller		= new DrawingController(this);
 				
 				this.addEventListener(MouseEvent.MOUSE_DOWN, proxycontroller.mouseDownHandler);
 				this.addEventListener(MouseEvent.MOUSE_MOVE, proxycontroller.mouseMoveHandler);
 				this.addEventListener(MouseEvent.MOUSE_UP, proxycontroller.mouseUpHandler);
+			}
+			
+			public function deleteSelected():void
+			{
+				var Selected:Array = controller.currentlySelected();
+				
+				while(Selected.length > 0)
+				{
+					removeElement(Selected.pop());
+				}
+			}
+			
+			override public function removeElement(element:IVisualElement):IVisualElement
+			{
+				var el:IShape = element as IShape;
+				if(el)
+				{
+					controller.UnRegisterShape(el as IShape);
+				}
+				
+				return super.removeElement( element );
+			}
+			
+			override public function addElement(element:IVisualElement):IVisualElement
+			{
+				var el:IShape = element as IShape;
+				if(el)
+				{
+					controller.RegisterShape(el as IShape);
+				}
+				return super.addElement( element);
+			}
+			
+			override public function removeAllElements():void
+			{
+				while(this.numElements > 0)
+				{
+					removeElement(this.getElementAt(0));
+				}
 			}
 			
 			
@@ -54,8 +99,5 @@ For more information see COPYING.txt file in the root folder
 	
 	
 	
-	<s:BorderContainer width="600" height="800" 
-					   borderAlpha="1" borderWeight="2" borderVisible="true"
-					   />
 	
 </s:SkinnableContainer>

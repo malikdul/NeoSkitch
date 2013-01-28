@@ -16,13 +16,14 @@ package local.malik.skitch.view.mediators
 	import local.malik.skitch.model.vo.ColorVO;
 	import local.malik.skitch.util.Constants;
 	import local.malik.skitch.view.DrawingAreaView;
-	import local.malik.skitch.view.drawing.Shape;
 	import local.malik.skitch.view.drawing.factory.ShapesFactory;
+	import local.malik.skitch.view.drawing.interfaces.IShape;
 	import local.malik.skitch.view.event.AppViewEvent;
 	import local.malik.skitch.view.event.DrawShapeEvent;
 	
 	import mx.collections.ArrayCollection;
 	import mx.collections.IList;
+	import mx.core.IVisualElement;
 	
 	import org.robotlegs.mvcs.Mediator;
 	
@@ -31,7 +32,7 @@ package local.malik.skitch.view.mediators
 	public class DrawingAreaMediator extends Mediator
 	{
 		[Inject]
-		public var drawingArea:DrawingAreaView;
+		public var view:DrawingAreaView;
 		
 		[Inject]
 		public var model:DocumentModel;
@@ -51,19 +52,25 @@ package local.malik.skitch.view.mediators
 			eventMap.mapListener(eventDispatcher, DrawShapeEvent.DRAW_SHAPE, whenShapeChanged);
 			eventMap.mapListener(eventDispatcher, AppViewEvent.COLOR_CHANGE, whenColorChanged);
 			eventMap.mapListener(eventDispatcher, DocumentModelEvent.RE_LOAD_DOCUMENT, whenDocumentReloaded);
+			eventMap.mapListener(eventDispatcher, DocumentModelEvent.SHAPE_DELETED, whenShapeDeleted);
 			// View Listeners
-			eventMap.mapListener(drawingArea, "proxyDrawingEnd", onProxyDrawingEnd);
+			eventMap.mapListener(view, "proxyDrawingEnd", onProxyDrawingEnd);
 			
 			whenDocumentReloaded(null);
+		}
+		
+		protected function whenShapeDeleted(event:DocumentModelEvent):void
+		{
+			view.deleteSelected();
 		}
 		
 		protected function whenDocumentReloaded(event:DocumentModelEvent):void
 		{
 			var collection:IList = model.getAll();
 			
-			for each( var shape:Shape in collection )
+			for each( var shape:IShape in collection )
 			{
-				drawingArea.addElement( shape );
+				view.addElement( shape as IVisualElement );
 			}
 		}
 		protected function whenShapeChanged(event:DrawShapeEvent):void
@@ -78,7 +85,8 @@ package local.malik.skitch.view.mediators
 		
 		protected function onProxyDrawingEnd(event:ElementExistenceEvent):void
 		{
-			var shape:Shape = ShapesFactory.getShape( lastDrawEvent );
+			//if( null == lastDrawEvent )
+			var shape:IShape = ShapesFactory.getShape( lastDrawEvent );
 			if( null != shape )
 			{
 				shape.height = event.element.height;
@@ -89,7 +97,7 @@ package local.malik.skitch.view.mediators
 				shape.fillAlpha = colorVO.alpha;
 				shape.fillColor = colorVO.color;
 				
-				drawingArea.addElement( shape );
+				view.addElement( shape as IVisualElement );
 				model.addShape( shape );
 				
 				dispatch( new DocumentModelEvent( DocumentModelEvent.SHAPE_ADDED, shape ) );

@@ -11,10 +11,8 @@ For more information see COPYING.txt file in the root folder
 **/
 package local.malik.skitch.model
 {
-	import flash.net.SharedObject;
-	
 	import local.malik.skitch.model.event.DocumentModelEvent;
-	import local.malik.skitch.view.drawing.Shape;
+	import local.malik.skitch.view.drawing.interfaces.IShape;
 	
 	import mx.collections.ArrayCollection;
 	import mx.collections.IList;
@@ -44,7 +42,7 @@ package local.malik.skitch.model
 			//trace("objects in local store: ", localStoreSO.data.shapesCollection.length );
 		}
 		
-		public function addShape(shape:Shape):void
+		public function addShape(shape:IShape):void
 		{
 			shapesCollection.addItem( shape );
 		}

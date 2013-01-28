@@ -19,11 +19,9 @@ For more information see COPYING.txt file in the root folder
 		<skitch:SkitchContext contextView="{this}" />
 	</fx:Declarations>
 	
-	<s:Scroller width="100%" height="100%" >
-		<s:Group width="100%" height="100%" >
-			<view:skitchView />
-		</s:Group>
-	</s:Scroller>
+	
+	<view:skitchView width="100%" height="100%" />
+	
 	
 	
 	
