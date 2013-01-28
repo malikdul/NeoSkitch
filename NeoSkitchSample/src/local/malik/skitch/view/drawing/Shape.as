@@ -14,9 +14,11 @@ package local.malik.skitch.view.drawing
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
 	import flash.events.Event;
+	import flash.events.MouseEvent;
 	
 	import local.malik.skitch.util.xml.XmlConstants;
 	import local.malik.skitch.util.xml.XmlUtils;
+	import local.malik.skitch.view.drawing.interfaces.IShape;
 	
 	import mx.core.UIComponent;
 	import mx.events.PropertyChangeEvent;
@@ -31,7 +33,7 @@ package local.malik.skitch.view.drawing
 	 * 
 	 */	
 	[Bindable]
-	public class Shape extends UIComponent
+	public class Shape extends UIComponent implements IShape
 	{
 		private var _shapeHeight:Number;
 		private var _shapeWidth:Number;
@@ -61,6 +63,7 @@ package local.malik.skitch.view.drawing
 			addEventListener(Event.ADDED_TO_STAGE, addedToStageHandler);
 			addEventListener(ResizeEvent.RESIZE, ResizeHandler);
 			addEventListener(PropertyChangeEvent.PROPERTY_CHANGE, PropertyChangeHandler);
+			addEventListener(MouseEvent.CLICK, mouseClickHandler);
 		}
 		
 		/**
@@ -220,7 +223,13 @@ package local.malik.skitch.view.drawing
 			RefreshDisplay();
 		}
 		
-		public function PropertyChangeHandler(evt:PropertyChangeEvent):void
+		protected function mouseClickHandler(event:MouseEvent):void
+		{
+			event.preventDefault();
+			event.stopImmediatePropagation();
+		}
+		
+		protected function PropertyChangeHandler(event:PropertyChangeEvent):void
 		{
 			RefreshDisplay();
 		}

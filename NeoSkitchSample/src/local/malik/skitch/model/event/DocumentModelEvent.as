@@ -17,6 +17,7 @@ package local.malik.skitch.model.event
 	
 	public class DocumentModelEvent extends Event
 	{
+		public static const SAVE_DOCUMENT:String 				= 'saveDocument';
 		public static const SHAPE_ADDED:String 					= 'shapeAdded';
 		public static const SHAPE_DELETED:String 				= 'shapeDeleted';
 		public static const SHAPE_COLLECTION_CLEARED:String 	= 'shapesCollectionCleared';

@@ -26,5 +26,8 @@ package local.malik.skitch.util
 		public static const COLOR		:String 		= 'color';
 		public static const PIXALATE	:String 		= 'pixalate';
 		public static const RESIZE		:String 		= 'resize';
+
+		public static const SAVE		:String 		= 'save';
+		public static const DELETE		:String 		= 'delete';
 	}
 }

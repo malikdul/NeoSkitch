@@ -19,12 +19,14 @@ package local.malik.skitch
 	import local.malik.skitch.model.event.DocumentModelEvent;
 	import local.malik.skitch.view.DrawingAreaView;
 	import local.malik.skitch.view.Toolbar;
+	import local.malik.skitch.view.Topbar;
 	import local.malik.skitch.view.components.ColorPopup;
 	import local.malik.skitch.view.components.ShapesPopup;
 	import local.malik.skitch.view.mediators.ColorPopupMediator;
 	import local.malik.skitch.view.mediators.DrawingAreaMediator;
 	import local.malik.skitch.view.mediators.ShapesPopupMediator;
 	import local.malik.skitch.view.mediators.ToolbarMediator;
+	import local.malik.skitch.view.mediators.TopbarMediator;
 	
 	import org.robotlegs.base.ContextEvent;
 	import org.robotlegs.mvcs.Context;
@@ -43,12 +45,12 @@ package local.malik.skitch
 			
 			// Controller
 			commandMap.mapEvent(ContextEvent.STARTUP_COMPLETE, LoadDocumentFromSO ); 
-			commandMap.mapEvent(DocumentModelEvent.SHAPE_ADDED, SaveDocumentToSO);
-			commandMap.mapEvent(DocumentModelEvent.SHAPE_DELETED, SaveDocumentToSO);
+			commandMap.mapEvent(DocumentModelEvent.SAVE_DOCUMENT, SaveDocumentToSO);
 
 			//view
 			mediatorMap.mapView(ColorPopup, ColorPopupMediator, null, false );
 			mediatorMap.mapView(ShapesPopup, ShapesPopupMediator, null, false );
+			mediatorMap.mapView(Topbar, TopbarMediator);
 			mediatorMap.mapView(Toolbar, ToolbarMediator);
 			mediatorMap.mapView(DrawingAreaView, DrawingAreaMediator);
 			

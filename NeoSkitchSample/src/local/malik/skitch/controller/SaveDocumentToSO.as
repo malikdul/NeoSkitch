@@ -12,15 +12,10 @@ For more information see COPYING.txt file in the root folder
 package local.malik.skitch.controller
 {
 	import flash.net.SharedObject;
-	import flash.net.registerClassAlias;
 	
 	import local.malik.skitch.model.DocumentModel;
 	import local.malik.skitch.util.xml.XmlUtils;
-	import local.malik.skitch.view.drawing.Shape;
-	import local.malik.skitch.view.drawing.shapes.Elipse;
-	import local.malik.skitch.view.drawing.shapes.Line;
-	import local.malik.skitch.view.drawing.shapes.Rectangle;
-	import local.malik.skitch.view.drawing.text.Text;
+	import local.malik.skitch.view.drawing.interfaces.IShape;
 	
 	import mx.collections.IList;
 	
@@ -46,7 +41,7 @@ package local.malik.skitch.controller
 			
 			var x:XML = XmlUtils.getNodeByTagName( "document" );
 			
-			for each( var shape:Shape in collection )
+			for each( var shape:IShape in collection )
 			{
 				x.appendChild( shape.ToXML() ) ;
 			}

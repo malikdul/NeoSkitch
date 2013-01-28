@@ -14,8 +14,8 @@ package local.malik.skitch.controller
 	import flash.net.SharedObject;
 	
 	import local.malik.skitch.model.DocumentModel;
-	import local.malik.skitch.view.drawing.Shape;
 	import local.malik.skitch.view.drawing.factory.ShapesFactory;
+	import local.malik.skitch.view.drawing.interfaces.IShape;
 	
 	import mx.collections.ArrayCollection;
 	
@@ -47,7 +47,7 @@ package local.malik.skitch.controller
 				for each( var x:XML in xList )
 				{
 					trace(x);
-					var shape:Shape = ShapesFactory.getShapeFromXML( x );
+					var shape:IShape = ShapesFactory.getShapeFromXML( x );
 					
 					shapes.addItem( shape );
 				}

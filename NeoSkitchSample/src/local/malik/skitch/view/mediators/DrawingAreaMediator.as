@@ -79,18 +79,21 @@ package local.malik.skitch.view.mediators
 		protected function onProxyDrawingEnd(event:ElementExistenceEvent):void
 		{
 			var shape:Shape = ShapesFactory.getShape( lastDrawEvent );
-			shape.height = event.element.height;
-			shape.width = event.element.width;
-			shape.x = event.element.x;
-			shape.y = event.element.y;
-			
-			shape.fillAlpha = colorVO.alpha;
-			shape.fillColor = colorVO.color;
-			
-			drawingArea.addElement( shape );
-			model.addShape( shape );
-			
-			dispatch( new DocumentModelEvent( DocumentModelEvent.SHAPE_ADDED, shape ) );
+			if( null != shape )
+			{
+				shape.height = event.element.height;
+				shape.width = event.element.width;
+				shape.x = event.element.x;
+				shape.y = event.element.y;
+				
+				shape.fillAlpha = colorVO.alpha;
+				shape.fillColor = colorVO.color;
+				
+				drawingArea.addElement( shape );
+				model.addShape( shape );
+				
+				dispatch( new DocumentModelEvent( DocumentModelEvent.SHAPE_ADDED, shape ) );
+			}
 		}
 	}
 }

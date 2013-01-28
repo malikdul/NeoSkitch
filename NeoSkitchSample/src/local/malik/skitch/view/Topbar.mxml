@@ -25,6 +25,7 @@ For more information see COPYING.txt file in the root folder
 	
 	<s:Label color="#FFFFFF" fontSize="16" fontWeight="bold" text="Blank"/>
 	<s:Spacer width="100%" />
+	<s:Button label="save" skinClass="local.malik.skitch.view.skins.SaveTB" />
 	<s:Button label="redo" skinClass="local.malik.skitch.view.skins.UndoTB" />
 	<s:Button label="delete" skinClass="local.malik.skitch.view.skins.DeleteTB" />
 	

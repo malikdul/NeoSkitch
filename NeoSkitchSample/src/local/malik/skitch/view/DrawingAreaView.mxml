@@ -20,23 +20,26 @@ For more information see COPYING.txt file in the root folder
 	<fx:Script>
 		<![CDATA[
 			import local.malik.skitch.view.drawing.controller.ProxyDrawingController;
+			import local.malik.skitch.view.drawing.interfaces.IShape;
 			
+			import mx.core.IVisualElement;
 			import mx.core.UIComponentCachePolicy;
 			import mx.events.FlexEvent;
 			
-			private var controller:ProxyDrawingController;	
+			private var proxycontroller:ProxyDrawingController;	
 			
 			protected function init(event:FlexEvent):void
 			{
 				cachePolicy 	= UIComponentCachePolicy.ON;
 				cacheAsBitmap 	= true;
 				
-				controller = new ProxyDrawingController( this );
+				proxycontroller = new ProxyDrawingController( this );
 				
-				this.addEventListener(MouseEvent.MOUSE_DOWN, controller.mouseDownHandler);
-				this.addEventListener(MouseEvent.MOUSE_MOVE, controller.mouseMoveHandler);
-				this.addEventListener(MouseEvent.MOUSE_UP, controller.mouseUpHandler);
+				this.addEventListener(MouseEvent.MOUSE_DOWN, proxycontroller.mouseDownHandler);
+				this.addEventListener(MouseEvent.MOUSE_MOVE, proxycontroller.mouseMoveHandler);
+				this.addEventListener(MouseEvent.MOUSE_UP, proxycontroller.mouseUpHandler);
 			}
+			
 			
 		]]>
 	</fx:Script>

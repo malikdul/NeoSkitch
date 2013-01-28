@@ -13,11 +13,13 @@ package local.malik.skitch.view.drawing.text
 {
 	import local.malik.skitch.view.drawing.Shape;
 	
-	//import spark.components.TextArea;
-
+	import spark.components.TextArea;
+	import spark.components.TextInput;
+	
 	public class Text extends Shape
 	{
 		//protected var _TextArea:TextArea;
+		protected var _TextArea:TextInput;
 		private var isCapturingKeyBoard:Boolean = false;
 		
 		public function Text()
@@ -25,10 +27,11 @@ package local.malik.skitch.view.drawing.text
 			super();
 			
 			//_TextArea = new TextArea();
+			_TextArea = new TextInput();
 		}
 		override protected function Draw():void
 		{
-			this.graphics.beginFill(0x0000BB, 0.07);
+			this.graphics.beginFill(0x0000BB, 0.03);
 			this.graphics.lineStyle(1, 0x3123cc, 1);
 			this.graphics.drawRect(0, 0, this.width, this.height);
 			
@@ -41,16 +44,19 @@ package local.malik.skitch.view.drawing.text
 		override protected function createChildren():void
 		{
 			super.createChildren();
-			//addChild(_TextArea);
+			addChild(_TextArea);
 			SetStyle();
 		}
 		
 		private function SetStyle():void
 		{
-			//this._TextArea.text  = "";
+			this._TextArea.text  = "some text here";
 			
-			//_TextArea.percentHeight 		= 100;
-			//_TextArea.percentWidth			= 100
+			_TextArea.percentHeight 		= 100;
+			_TextArea.percentWidth			= 100;
+			
+			_TextArea.x = 0;
+			_TextArea.y = 0;
 		}
 		
 		override public function FromXML(x:XML):void
