@@ -60,5 +60,17 @@ package local.malik.skitch.model
 				dispatch( new DocumentModelEvent( DocumentModelEvent.RE_LOAD_DOCUMENT, shapesCollection ) );
 			}
 		}
+
+		public function removeAll(collection:IList):void
+		{
+			if( collection && collection.length )
+			{
+				var i:int;
+				for ( i = 0; i < collection.length; i++ )
+				{
+					shapesCollection.removeItemAt( shapesCollection.getItemIndex( collection.getItemAt( i ) ) );
+				}
+			}
+		}
 	}
 }

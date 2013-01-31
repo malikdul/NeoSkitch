@@ -22,6 +22,7 @@ package local.malik.skitch.view.mediators
 	import local.malik.skitch.view.event.DrawShapeEvent;
 	
 	import mx.collections.ArrayCollection;
+	import mx.collections.ArrayList;
 	import mx.collections.IList;
 	import mx.core.IVisualElement;
 	
@@ -61,7 +62,8 @@ package local.malik.skitch.view.mediators
 		
 		protected function whenShapeDeleted(event:DocumentModelEvent):void
 		{
-			view.deleteSelected();
+			model.removeAll(  view.deleteSelected() );
+			trace("getAll", model.getAll().length );
 		}
 		
 		protected function whenDocumentReloaded(event:DocumentModelEvent):void

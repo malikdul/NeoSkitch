@@ -56,6 +56,7 @@ package local.malik.skitch.view.drawing.controller
 		private var proxyObject		:ShapeProxy ;
 		private var cView			:IShapeContainer;
 		private var minHeightWidth	:int ;
+		private var isDrawing		:Boolean
 		
 		
 		public function ProxyDrawingController(view:IShapeContainer, minHeightWidth:int = 20)
@@ -64,6 +65,10 @@ package local.malik.skitch.view.drawing.controller
 			minHeightWidth	= minHeightWidth;
 			
 			proxyObject = new ShapeProxy();
+			
+			view.addEventListener(MouseEvent.MOUSE_DOWN, mouseDownHandler);
+			view.addEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler);
+			view.addEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
 		}
 		
 		public function mouseDownHandler(event:MouseEvent):void
@@ -84,7 +89,7 @@ package local.malik.skitch.view.drawing.controller
 			proxyObject.width 			= 0;
 			proxyObject.height 			= 0;
 			
-			cView.addElement(proxyObject);			
+			cView.addElement(proxyObject);	
 			
 		}
 		
@@ -92,13 +97,18 @@ package local.malik.skitch.view.drawing.controller
 		{
 			if( ! ( event.target is SkinnableContainerSkin && event.currentTarget is DrawingAreaView ) ) return;
 			
-			var global:Point 		= cView.localToGlobal(new Point(proxyObject.x,proxyObject.y));
-			
-			var w:int 				= event.stageX - global.x ;				
-			var h:int 				= event.stageY - global.y ;
-			
-			proxyObject.width 		= w - 1;
-			proxyObject.height 		= h - 1;
+			if( event.buttonDown )
+			{
+				isDrawing = true;
+				
+				var global:Point 		= cView.localToGlobal(new Point(proxyObject.x,proxyObject.y));
+				
+				var w:int 				= event.stageX - global.x ;				
+				var h:int 				= event.stageY - global.y ;
+				
+				proxyObject.width 		= w - 1;
+				proxyObject.height 		= h - 1;
+			}
 			
 		}
 		
@@ -106,7 +116,7 @@ package local.malik.skitch.view.drawing.controller
 		{
 			try
 			{
-				if( ! ( event.target is SkinnableContainerSkin && event.currentTarget is DrawingAreaView ) ) return;
+				if( ! ( isDrawing && event.target is SkinnableContainerSkin && event.currentTarget is DrawingAreaView ) ) return;
 				
 				currentObject.width 	= proxyObject.width;
 				currentObject.height 	= proxyObject.height;
@@ -124,6 +134,8 @@ package local.malik.skitch.view.drawing.controller
 				
 				var e:ElementExistenceEvent = new ElementExistenceEvent( "proxyDrawingEnd", true, false, sp );
 				cView.dispatchEvent( e );
+				
+				isDrawing = false;
 				
 			} 
 			catch(error:Error) 
