@@ -14,6 +14,7 @@ package local.malik.skitch.view.drawing.controller
 {
 	import com.roguedevelopment.objecthandles.SpriteHandle;
 	
+	import flash.display.DisplayObjectContainer;
 	import flash.events.MouseEvent;
 	import flash.geom.Point;
 	
@@ -109,7 +110,10 @@ package local.malik.skitch.view.drawing.controller
 				proxyObject.width 		= w - 1;
 				proxyObject.height 		= h - 1;
 			}
-			
+			else if( null != proxyObject && ( cView as DisplayObjectContainer ).contains( proxyObject ) )
+			{
+				cView.removeElement(proxyObject);
+			}
 		}
 		
 		public function mouseUpHandler(event:MouseEvent):void

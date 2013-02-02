@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testrun name="" >
+<testsuite  name="Default Test Suite" project="NeoSkitchSample">
+<testsuite name="testSuite.tests:TestSkitchApp" type="testcaseclass"/>
+</testsuite>
+<portNumber value="51499" />
+</testrun>

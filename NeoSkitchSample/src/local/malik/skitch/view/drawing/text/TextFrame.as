@@ -136,6 +136,8 @@ package local.malik.skitch.view.drawing.text
 			this.width			= x.@[XmlConstants.WIDTH];
 			this.x				= x.@[XmlConstants.X];
 			this.y				= x.@[XmlConstants.Y];
+			this._fillAlpha		= x.@[XmlConstants.FILL_ALPHA];
+			this._fillColor		= x.@[XmlConstants.FILL_COLOR];
 			
 			_textArea.text = x.text();
 		}
@@ -148,6 +150,8 @@ package local.malik.skitch.view.drawing.text
 			x.@[XmlConstants.WIDTH] 		= this.width;
 			x.@[XmlConstants.X] 			= this.x;
 			x.@[XmlConstants.Y] 			= this.y;
+			x.@[XmlConstants.FILL_ALPHA] 	= this._fillAlpha;
+			x.@[XmlConstants.FILL_COLOR] 	= this._fillColor;
 			
 			
 			//TODO: escape the text ... may be use XML Entities, base64 strings or CDATA section etc. 
