@@ -38,7 +38,7 @@ package local.malik.skitch.view.drawing.text
 	{
 		private var _textArea:TextArea;
 		private var _fillColor:uint			= 0xffffff;
-		private var _fillAlpha:Number		= 1;
+		private var _fillAlpha:Number		= 0;
 		
 		public var isLocked:Boolean = false;
 		
@@ -85,6 +85,16 @@ package local.malik.skitch.view.drawing.text
 			_fillAlpha = value;
 		}
 		
+		public function get text():String
+		{
+			return _textArea.text;
+		}
+		
+		public function set text(value:String):void
+		{
+			_textArea.text = value;
+		}
+		
 		override protected function createChildren():void
 		{
 			_textArea.percentHeight = 100;
@@ -93,6 +103,9 @@ package local.malik.skitch.view.drawing.text
 			_textArea.heightInLines = NaN;
 			_textArea.horizontalCenter = 0;
 			_textArea.verticalCenter = 0;
+			_textArea.setStyle("contentBackgroundColor", fillColor);
+			_textArea.setStyle("contentBackgroundAlpha", fillAlpha);
+			_textArea.setStyle("borderVisible", "false");
 			_textArea.setStyle("horizontalScrollPolicy", ScrollPolicy.OFF);
 			_textArea.setStyle("verticalScrollPolicy", ScrollPolicy.OFF);
 			
@@ -120,11 +133,12 @@ package local.malik.skitch.view.drawing.text
 		
 		protected function Draw():void
 		{
+			_textArea.graphics.clear();
 			graphics.clear();
-			graphics.lineStyle(1,0);
-			graphics.beginFill(0xB3EAFF,1);
+			/*graphics.lineStyle(1,0);
+			graphics.beginFill(fillColor,fillAlpha);
 			graphics.drawRoundRect(0,0,width,height,0,0);
-			graphics.endFill();
+			graphics.endFill();*/
 			
 			// set focus to text area			
 			callLater( _textArea.setFocus );

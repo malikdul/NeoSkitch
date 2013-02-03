@@ -10,7 +10,7 @@ For more information see COPYING.txt file in the root folder
 
 **/
 
-package local.malik.skitch.view.drawing.controller
+package local.malik.skitch.view.drawing.managers
 {
 	import com.roguedevelopment.objecthandles.SpriteHandle;
 	
@@ -51,7 +51,7 @@ package local.malik.skitch.view.drawing.controller
 	 * 
 	 * 
 	 */	
-	public class ProxyDrawingController
+	public class ProxyDrawingManager
 	{
 		private var currentObject	:ShapeProxy ;
 		private var proxyObject		:ShapeProxy ;
@@ -60,7 +60,7 @@ package local.malik.skitch.view.drawing.controller
 		private var isDrawing		:Boolean
 		
 		
-		public function ProxyDrawingController(view:IShapeContainer, minHeightWidth:int = 20)
+		public function ProxyDrawingManager(view:IShapeContainer, minHeightWidth:int = 20)
 		{
 			cView 			= view;
 			minHeightWidth	= minHeightWidth;

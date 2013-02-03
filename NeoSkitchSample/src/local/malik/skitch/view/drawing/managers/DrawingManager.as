@@ -9,7 +9,7 @@ For more information see COPYING.txt file in the root folder
 
 
 **/
-package local.malik.skitch.view.drawing.controller
+package local.malik.skitch.view.drawing.managers
 {
 	import com.roguedevelopment.objecthandles.ObjectHandles;
 	import com.roguedevelopment.objecthandles.SelectionEvent;
@@ -27,7 +27,7 @@ package local.malik.skitch.view.drawing.controller
 	
 	import spark.events.ElementExistenceEvent;
 
-	public class DrawingController
+	public class DrawingManager
 	{
 		private var currentObject:ShapeProxy ;
 		//private var currentTarget:IVisualElementContainer ;
@@ -37,7 +37,7 @@ package local.malik.skitch.view.drawing.controller
 		private var cView:DrawingAreaView;
 		private var minHeightWidth:int ;
 		
-		public function DrawingController( view:DrawingAreaView )
+		public function DrawingManager( view:DrawingAreaView )
 		{
 			proxyObject = new ShapeProxy();
 			minHeightWidth =50;
