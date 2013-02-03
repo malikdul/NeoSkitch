@@ -103,8 +103,15 @@ package local.malik.skitch.view.drawing.text
 			_textArea.heightInLines = NaN;
 			_textArea.horizontalCenter = 0;
 			_textArea.verticalCenter = 0;
-			_textArea.setStyle("contentBackgroundColor", fillColor);
-			_textArea.setStyle("contentBackgroundAlpha", fillAlpha);
+			
+			//text bg is not suitable here as it is more of a highlight color
+			//_textArea.setStyle("contentBackgroundColor", fillColor);
+			//_textArea.setStyle("contentBackgroundAlpha", fillAlpha);
+
+			//found an issue with caret, when bg alpha is zero caret is not visible
+			//and quick googling shows that custom color can't be assigned to caret :(
+			//so have to set it some value so that it can be seen with naked eye :)
+			_textArea.setStyle("contentBackgroundAlpha", 0.1);
 			_textArea.setStyle("borderVisible", "false");
 			_textArea.setStyle("horizontalScrollPolicy", ScrollPolicy.OFF);
 			_textArea.setStyle("verticalScrollPolicy", ScrollPolicy.OFF);
@@ -133,7 +140,7 @@ package local.malik.skitch.view.drawing.text
 		
 		protected function Draw():void
 		{
-			_textArea.graphics.clear();
+			//_textArea.graphics.clear();
 			graphics.clear();
 			/*graphics.lineStyle(1,0);
 			graphics.beginFill(fillColor,fillAlpha);

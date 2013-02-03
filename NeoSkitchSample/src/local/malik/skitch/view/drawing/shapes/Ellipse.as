@@ -14,12 +14,12 @@ package local.malik.skitch.view.drawing.shapes
 	import local.malik.skitch.view.drawing.Shape;
 
 	[Bindable]
-	public class Elipse extends Shape
+	public class Ellipse extends Shape
 	{
 		private var m_iRadius:uint      		 = 50;
 		private var m_bIsEllipse:Boolean       = true;
 		
-		public function Elipse()
+		public function Ellipse()
 		{
 			super();
 		}

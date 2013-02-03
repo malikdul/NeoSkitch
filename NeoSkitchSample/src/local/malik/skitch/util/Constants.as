@@ -17,7 +17,7 @@ package local.malik.skitch.util
 		public static const PAGE		:String 		= 'page';
 		public static const LINE		:String 		= 'line';
 		public static const RECTANGLE	:String		 	= 'rectangle';
-		public static const ELIPSE		:String 		= 'elipse';
+		public static const ELLIPSE		:String 		= 'ellipse';
 		public static const TEXT		:String 		= 'text';
 		
 		public static const ARROW		:String 		= 'arrow';

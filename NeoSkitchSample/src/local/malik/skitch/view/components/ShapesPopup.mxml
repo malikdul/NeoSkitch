@@ -35,7 +35,7 @@ For more information see COPYING.txt file in the root folder
 		
 		<s:HGroup >
 			<s:ToggleButton id="id_rectanglebtn" label="{Constants.RECTANGLE}" skinClass="local.malik.skitch.view.skins.RectangleTB" />
-			<s:ToggleButton id="id_circlebtn" label="{Constants.ELIPSE}" skinClass="local.malik.skitch.view.skins.CircleTB" />
+			<s:ToggleButton id="id_circlebtn" label="{Constants.ELLIPSE}" skinClass="local.malik.skitch.view.skins.CircleTB" />
 			<s:ToggleButton id="id_linebtn" label="{Constants.LINE}" skinClass="local.malik.skitch.view.skins.LineTB" />
 		</s:HGroup>
 		

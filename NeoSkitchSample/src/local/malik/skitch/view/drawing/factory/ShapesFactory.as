@@ -13,7 +13,7 @@ package local.malik.skitch.view.drawing.factory
 {
 	import local.malik.skitch.util.Constants;
 	import local.malik.skitch.view.drawing.interfaces.IShape;
-	import local.malik.skitch.view.drawing.shapes.Elipse;
+	import local.malik.skitch.view.drawing.shapes.Ellipse;
 	import local.malik.skitch.view.drawing.shapes.Line;
 	import local.malik.skitch.view.drawing.shapes.Rectangle;
 	import local.malik.skitch.view.drawing.text.Text;
@@ -29,8 +29,8 @@ package local.malik.skitch.view.drawing.factory
 			{
 				case Constants.PAGE:
 					return null; //its a special object not a normal shape, will create later if required.
-				case Constants.ELIPSE:
-					shape = new Elipse();
+				case Constants.ELLIPSE:
+					shape = new Ellipse();
 					break;
 				case Constants.LINE:
 					shape = new Line();
@@ -60,8 +60,8 @@ package local.malik.skitch.view.drawing.factory
 			{
 				case Constants.PAGE:
 					return null; //its a special object not a normal shape, will create later if required.
-				case Constants.ELIPSE:
-					shape = new Elipse();
+				case Constants.ELLIPSE:
+					shape = new Ellipse();
 					break;
 				case Constants.LINE:
 					shape = new Line();

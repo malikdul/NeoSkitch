@@ -48,7 +48,7 @@ For more information see COPYING.txt file in the root folder
 						id_shapebtn.selected = true;
 						break;
 					}
-					case Constants.ELIPSE:
+					case Constants.ELLIPSE:
 					{
 						id_shapebtn.setStyle("skinClass",local.malik.skitch.view.skins.CircleTB );
 						removeSelection();
