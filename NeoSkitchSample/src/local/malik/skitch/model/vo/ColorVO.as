@@ -40,7 +40,7 @@ package local.malik.skitch.model.vo
 		//  alpha
 		//----------------------------------
 		
-		private var _alpha:Number = 0.0;
+		private var _alpha:Number = 1.0;
 		
 		[Bindable]
 		
