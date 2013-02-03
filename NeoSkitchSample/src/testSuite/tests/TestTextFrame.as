@@ -6,18 +6,18 @@ package testSuite.tests
 
 	public class TestTextFrame
 	{
-		private var text:TextFrame;
+		private var textFrame:TextFrame;
 		
 		[Before]
 		public function setUp():void
 		{
-			text = new TextFrame();
+			textFrame = new TextFrame();
 		}
 		
 		[After]
 		public function tearDown():void
 		{
-			text = null;
+			textFrame = null;
 		}
 		
 		[BeforeClass]
@@ -33,30 +33,32 @@ package testSuite.tests
 		[Test]
 		public function testFromXML():void
 		{
-			var x:XML = <Elipse borderAlpha="1" borderColor="0" borderWeight="1" fillAlpha="1" fillColor="0xff0000" 
-							height="200" width="200" x="100" y="100"/>;
+			var x:XML = <Text borderAlpha="1" borderColor="0" borderWeight="1" fillAlpha="1" fillColor="0xff0000" 
+							height="200" width="200" x="100" y="100">some test text</Text>
 			
-			text.FromXML( x );
+			textFrame.FromXML( x );
 			
-			assertEquals( 100, text.x );
-			assertEquals( 100, text.y );
-			assertEquals( 200, text.height );
-			assertEquals( 200, text.width );
-			assertEquals( 0xff0000, text.fillColor );
+			assertEquals( 100, textFrame.x );
+			assertEquals( 100, textFrame.y );
+			assertEquals( 200, textFrame.height );
+			assertEquals( 200, textFrame.width );
+			assertEquals( 0xff0000, textFrame.fillColor );
+			assertEquals( "some test text", textFrame.text )
 		}
 		
 		[Test]
 		public function testToXML():void
 		{
-			text.height = 10;
-			text.width = 10;
-			text.x = 1;
-			text.y = 2;
+			textFrame.height = 10;
+			textFrame.width = 10;
+			textFrame.x = 1;
+			textFrame.y = 2;
+			textFrame.text = "some test text";
 			
-			var x:XML = text.ToXML();
+			var x:XML = textFrame.ToXML();
 			
-			assertEquals( x.@fillColor, text.fillColor );
-			assertEquals( x.@height, text.height );
+			assertEquals( x.@fillColor, textFrame.fillColor );
+			assertEquals( x.@height, textFrame.height );
 			assertEquals( 10, x.@width );
 			assertEquals( 1, x.@x );
 			assertEquals( 2, x.@y );

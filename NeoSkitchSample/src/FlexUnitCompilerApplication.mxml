@@ -8,18 +8,18 @@ Please click on the "Refresh" icon in "FlexUnit Results" view to regenerate this
 			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600">
 	<fx:Script>
 		<![CDATA[
-			import testSuite.tests.TestTextFrame;
 			import testSuite.tests.TestSkitchApp;
-			import testSuite.tests.TestShape;
 			import testSuite.tests.TestDocumentModel;
-			
-			private var testSuite_tests_DocumentModelTest_obj:testSuite.tests.TestDocumentModel;
+			import testSuite.tests.TestTextFrame;
+			import testSuite.tests.TestShape;
 			
 			private var testSuite_tests_TestShape_obj:testSuite.tests.TestShape;
 			
-			private var testSuite_tests_TestSkitchApp_obj:testSuite.tests.TestSkitchApp;
+			private var testSuite_tests_TestTextFrame_obj:testSuite.tests.TestTextFrame;
 			
-			private var testSuite_tests_TestText_obj:testSuite.tests.TestTextFrame;
+			private var testSuite_tests_TestDocumentModel_obj:testSuite.tests.TestDocumentModel;
+			
+			private var testSuite_tests_TestSkitchApp_obj:testSuite.tests.TestSkitchApp;
 		]]>
 	</fx:Script>
 	<fx:Declarations>

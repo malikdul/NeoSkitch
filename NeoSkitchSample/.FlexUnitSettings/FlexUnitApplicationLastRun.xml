@@ -3,5 +3,5 @@
 <testsuite  name="Default Test Suite" project="NeoSkitchSample">
 <testsuite name="testSuite.tests:TestSkitchApp" type="testcaseclass"/>
 </testsuite>
-<portNumber value="51499" />
+<portNumber value="8765" />
 </testrun>

@@ -22,8 +22,8 @@ For more information see COPYING.txt file in the root folder
 					  >
 	<fx:Script>
 		<![CDATA[
-			import local.malik.skitch.view.drawing.controller.DrawingController;
-			import local.malik.skitch.view.drawing.controller.ProxyDrawingController;
+			import local.malik.skitch.view.drawing.managers.DrawingManager;
+			import local.malik.skitch.view.drawing.managers.ProxyDrawingManager;
 			import local.malik.skitch.view.drawing.interfaces.IShape;
 			
 			import mx.collections.ArrayList;
@@ -32,16 +32,16 @@ For more information see COPYING.txt file in the root folder
 			import mx.core.UIComponentCachePolicy;
 			import mx.events.FlexEvent;
 			
-			private var proxycontroller:ProxyDrawingController;	
-			private var controller:DrawingController;	
+			private var proxycontroller:ProxyDrawingManager;	
+			private var controller:DrawingManager;	
 			
 			protected function init(event:FlexEvent):void
 			{
 				cachePolicy 	= UIComponentCachePolicy.ON;
 				cacheAsBitmap 	= true;
 				
-				proxycontroller = new ProxyDrawingController( this );
-				controller		= new DrawingController(this);
+				proxycontroller = new ProxyDrawingManager( this );
+				controller		= new DrawingManager(this);
 				
 			}
 			

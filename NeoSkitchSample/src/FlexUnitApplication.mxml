@@ -29,6 +29,6 @@
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
-	<flexui:FlexUnitTestRunnerUI id="testRunner" portNumber="51499">
+	<flexui:FlexUnitTestRunnerUI id="testRunner" portNumber="8765">
 	</flexui:FlexUnitTestRunnerUI>
 </s:Application>
