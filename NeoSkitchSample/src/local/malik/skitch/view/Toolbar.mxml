@@ -26,9 +26,9 @@ For more information see COPYING.txt file in the root folder
 			
 			public function removeSelection():void
 			{
-				id_arrowbtn.selected = false;
+				//id_arrowbtn.selected = false;
 				id_textbtn.selected = false;
-				id_penbtn.selected = false;
+				//id_penbtn.selected = false;
 				id_shapebtn.selected = false;
 			}
 
@@ -41,6 +41,12 @@ For more information see COPYING.txt file in the root folder
 			{
 				switch(name)
 				{
+					case Constants.TEXT:
+					{
+						removeSelection();
+						id_textbtn.selected = true;
+						break;
+					}
 					case Constants.RECTANGLE:
 					{
 						id_shapebtn.setStyle("skinClass",local.malik.skitch.view.skins.RectangleTB );
@@ -84,18 +90,18 @@ For more information see COPYING.txt file in the root folder
 	</s:layout>
 	
 	
-	<s:ToggleButton id="id_arrowbtn" label="{Constants.ARROW}" skinClass="local.malik.skitch.view.skins.ArrowTB" />
+	<s:Button id="id_arrowbtn" label="{Constants.ARROW}" skinClass="local.malik.skitch.view.skins.ArrowTB" />
 	<s:ToggleButton id="id_textbtn" label="{Constants.TEXT}" skinClass="local.malik.skitch.view.skins.TextTB" />
 	
 	<s:Group>
 		
-		<s:ToggleButton id="id_penbtn" label="{Constants.PEN}" skinClass="local.malik.skitch.view.skins.PenTB" />
+		<s:Button id="id_penbtn" label="{Constants.PEN}" skinClass="local.malik.skitch.view.skins.PenTB" />
 		<s:Image source="@Embed('/assets/images/option.png')" x="{id_colorbtn.width - 3}" y="{id_colorbtn.height - 3}" />
 		
 	</s:Group>
 	<s:Group>
 		
-		<s:ToggleButton id="id_shapebtn" label="{Constants.SHAPES}" skinClass="local.malik.skitch.view.skins.RectangleTB" />
+		<s:ToggleButton id="id_shapebtn" label="{Constants.SHAPES}" selected="true" skinClass="local.malik.skitch.view.skins.RectangleTB" />
 		<s:Image source="@Embed('/assets/images/option.png')" x="{id_shapebtn.width - 5}" y="{id_shapebtn.height - 5}" />
 		
 	</s:Group>

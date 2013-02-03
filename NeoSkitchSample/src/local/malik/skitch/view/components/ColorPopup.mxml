@@ -41,7 +41,7 @@ For more information see COPYING.txt file in the root folder
 			<components:ColorButton  color="#000000" skinClass="local.malik.skitch.view.skins.ColorPallete2TB" />
 		</s:HGroup>
 		
-		<s:HSlider id="id_opacity" minimum="0" maximum="100" toolTip="{id_opacity.value}" value="100"
+		<s:HSlider id="id_opacity" minimum="0" maximum="100" toolTip="{'opacity: ' + id_opacity.value}" value="100"
 				   skinClass="local.malik.skitch.view.skins.Slider"/>
 		
 	</s:SkinnableContainer>
